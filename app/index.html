@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+</head>
+<body>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+    
+        <h1><center>User Profile</center></h1>
+
+        <form name="userForm" id="userForm">
+            <div class="form-group col-sm-3">
+                <label for="user_name">Name</label>
+                <input type="text" id="user_name" name="user_name" class="form-control" placeholder="Enter name" value="Mukul kashyap" required>
+            </div>
+
+            <div class="form-group col-sm-3">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Enter email" value="mukulkash7841@gmail.com" required>
+            </div>
+
+            <div class="form-group col-sm-3">
+                <label for="hobbies">Hobbies</label>
+                <input type="text" id="hobbies" name="hobbies" class="form-control" placeholder="Comma seperated" value="coding,learning new technologies" required>
+            </div>
+
+            <div class="form-group col-sm-3">
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+        </form>
+    
+</body>
+</html>
+
+<script>
+    let base_url="http://localhost:3001";
+
+    let form=$("#userForm");
+    form.submit((event)=>{
+        event.preventDefault();
+        let dataObject={name:$("#user_name").val(),email:$("#email").val(),hobbies:$("#hobbies").val()};
+        axios.post(`${base_url}/update-profile`, dataObject)
+        .then(response => {
+            console.log(response)
+        }).catch(error=>{
+            console.log(error)
+        })
+    })
+</script>
