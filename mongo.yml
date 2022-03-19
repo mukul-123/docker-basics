@@ -1,5 +1,9 @@
 version: '3'
 services:
+  # basic-app:
+  #   image: basic-app
+  #   ports:
+  #     - 3001:3001
   dbmongo:
     image: mongo
     restart: always
